@@ -64,8 +64,7 @@ check_list_update() {
 		log "[$(to_upper "$LIST_FILE")] Local version: $OLD_VER, latest version: $NEW_VER."
 	fi
 
-	curl -sL -o "$RUN_DIR/$REPO_FILE" "https://cdn.jsdelivr.net/gh/$REPO_NAME@$REPO_BRANCH/$REPO_FILE"
-	if [ ! -s "$RUN_DIR/$REPO_FILE" ]; then
+	if ! curl -sL -o "$RUN_DIR/$REPO_FILE" "https://cdn.jsdelivr.net/gh/$REPO_NAME@$REPO_BRANCH/$REPO_FILE" || [ ! -s "$RUN_DIR/$REPO_FILE" ]; then
 		rm -f "$RUN_DIR/$REPO_FILE"
 		log "[$(to_upper "$LIST_FILE")] Update failed."
 
