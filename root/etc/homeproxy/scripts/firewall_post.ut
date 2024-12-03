@@ -370,6 +370,8 @@ chain homeproxy_redirect {
 chain homeproxy_output_redir {
 	type nat hook output priority filter -105; policy accept
 	meta nfproto { {{ (ipv6_support === '1') ? 'ipv4, ipv6' : 'ipv4' }} } meta l4proto tcp jump homeproxy_redirect
+
+	udp dport 53 meta skuid dnsmasq counter reject comment "!{{ cfgname }}: DNS hijack"
 }
 {% endif %}
 
