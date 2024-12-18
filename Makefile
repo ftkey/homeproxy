@@ -9,8 +9,8 @@ LUCI_PKGARCH:=all
 LUCI_DEPENDS:= \
 	+sing-box \
 	+chinadns-ng \
-	+firewall4 \
-	+kmod-nft-tproxy
+	+firewall \
+	+kmod-ipt-tproxy
 
 PKG_NAME:=luci-app-homeproxy
 
